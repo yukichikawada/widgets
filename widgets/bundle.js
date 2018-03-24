@@ -18284,6 +18284,10 @@ var _clock = __webpack_require__(28);
 
 var _clock2 = _interopRequireDefault(_clock);
 
+var _tabs = __webpack_require__(29);
+
+var _tabs2 = _interopRequireDefault(_tabs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18291,6 +18295,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Panes = [{ title: 'cats', content: 'are mean' }, { title: 'people', content: 'are nice' }, { title: 'dogs', content: 'are best friends' }];
 
 var Root = function (_React$Component) {
   _inherits(Root, _React$Component);
@@ -18304,7 +18310,12 @@ var Root = function (_React$Component) {
   _createClass(Root, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_clock2.default, null);
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_clock2.default, null),
+        _react2.default.createElement(_tabs2.default, { panes: Panes })
+      );
     }
   }]);
 
@@ -18325,10 +18336,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(18);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18356,56 +18363,56 @@ var Clock = function (_React$Component) {
   }
 
   _createClass(Clock, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       var time = this.state.time;
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'h1',
+          "h1",
           null,
-          'Clock'
+          "Clock"
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'clock' },
+          "div",
+          { className: "clock" },
           _react2.default.createElement(
-            'div',
-            { className: 'clock-headers' },
+            "div",
+            { className: "clock-headers" },
             _react2.default.createElement(
-              'h4',
+              "h4",
               null,
-              'Time:'
+              "Time:"
             ),
             _react2.default.createElement(
-              'h4',
+              "h4",
               null,
-              'Date:'
+              "Date:"
             )
           ),
           _react2.default.createElement(
-            'div',
-            { className: 'clock-values' },
+            "div",
+            { className: "clock-values" },
             _react2.default.createElement(
-              'h4',
-              { className: 'time' },
+              "h4",
+              { className: "time" },
               time.getHours(),
-              ':',
+              ":",
               time.getMinutes(),
-              ':',
+              ":",
               time.getSeconds(),
-              ' PDT'
+              " PDT"
             ),
             _react2.default.createElement(
-              'h4',
-              { className: 'date' },
+              "h4",
+              { className: "date" },
               this.getDayName(time.getDay()),
-              ' ',
+              " ",
               this.getMonthName(time.getMonth()),
-              ' ',
+              " ",
               time.getDate(),
-              ' ',
+              " ",
               time.getFullYear()
             )
           )
@@ -18413,30 +18420,30 @@ var Clock = function (_React$Component) {
       );
     }
   }, {
-    key: 'getDayName',
+    key: "getDayName",
     value: function getDayName(index) {
       var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       return days[index];
     }
   }, {
-    key: 'getMonthName',
+    key: "getMonthName",
     value: function getMonthName(index) {
       var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       return months[index];
     }
   }, {
-    key: 'tick',
+    key: "tick",
     value: function tick() {
       var time = new Date();
       this.setState({ time: time });
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       setInterval(this.tick, 1000);
     }
   }, {
-    key: 'componentWillUnmount',
+    key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.setState({ time: undefined });
     }
@@ -18446,6 +18453,94 @@ var Clock = function (_React$Component) {
 }(_react2.default.Component);
 
 module.exports = Clock;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Tabs = function (_React$Component) {
+  _inherits(Tabs, _React$Component);
+
+  function Tabs(props) {
+    _classCallCheck(this, Tabs);
+
+    var _this = _possibleConstructorReturn(this, (Tabs.__proto__ || Object.getPrototypeOf(Tabs)).call(this, props));
+
+    _this.state = {
+      tab: 0
+    };
+    _this.headers = _this.props.panes.map(function (prop, idx) {
+      var show = "";
+
+      if (_this.state === idx) {
+        show = "selected";
+      }
+
+      return _react2.default.createElement(
+        "li",
+        { key: idx,
+          className: show,
+          onClick: _this.setTabIndex.bind(_this, idx) },
+        prop.title
+      );
+    });
+    return _this;
+  }
+
+  _createClass(Tabs, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "tabs" },
+        _react2.default.createElement(
+          "div",
+          { className: "white" },
+          _react2.default.createElement(
+            "ul",
+            { className: "tab-titles" },
+            this.headers
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "tab-content" },
+          _react2.default.createElement(
+            "article",
+            null,
+            this.props.panes[this.state.tab].content
+          )
+        )
+      );
+    }
+  }, {
+    key: "setTabIndex",
+    value: function setTabIndex(idx) {
+      this.setState({ tab: idx });
+    }
+  }]);
+
+  return Tabs;
+}(_react2.default.Component);
+
+module.exports = Tabs;
 
 /***/ })
 /******/ ]);
